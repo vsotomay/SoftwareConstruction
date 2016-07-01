@@ -37,7 +37,7 @@ If you have checkout the project from GitHub you can build the project with mave
 mvn clean install
 ```
 
-## Neatbeans
+## Netbeans
 
 ######At netbens menu bar: Team->Git->Clone
 ######Paste github project in the 'Repository URL' field
