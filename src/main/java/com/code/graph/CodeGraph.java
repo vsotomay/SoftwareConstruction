@@ -18,8 +18,7 @@ import com.sun.glass.ui.EventLoop;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
- * Team 1
- * Code Graph
+ * @author
  *
  */
 public class CodeGraph
@@ -30,8 +29,8 @@ public class CodeGraph
         System.out.println(status);
 
         // creates an input stream for the file to be parsed
-        // FileInputStream in = new FileInputStream("/Users/Beto/Desktop/Factorial.java");//If you guys are going to make changes, comment this out and add your own file. before pushing make sure to leave this original one and comment the other out.!
-         FileInputStream in = new FileInputStream("/Users/jmcorral2/Desktop/FractionalToBinary.java");//If you guys are going to make changes, comment this out and add your own file. before pushing make sure to leave this original one and comment the other out.!
+      
+         FileInputStream in = new FileInputStream("/Users/jmcorral2/Desktop/FractionalToBinary.java");
         CompilationUnit cu;
         try {
             // parse the file
