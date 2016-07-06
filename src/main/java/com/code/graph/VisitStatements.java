@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Julio M. Corral
+ * @author T7
  */
 /**
      * Visit every method to parse statements from each
@@ -26,12 +26,13 @@ import java.util.List;
         public void visit(MethodDeclaration n, Object arg) {
 
             //Get every method's name from the parsed .java file
-            System.out.println("----------------Statements in [" + n.getName() + "] are: ------------------------------------------------------------------");
+            System.out.println("----------------Statements in [" + n.getName() + "] are: ----------------------");
 
             //every method declaration contains finite number of statments (lines of code)
-            LIST_STATEMENTS = n.getBody().getStmts();
-          
-            
+            BlockStmt method_block=new BlockStmt();
+            method_block=n.getBody();
+            LIST_STATEMENTS = method_block.getStmts();
+    
             for(Statement statement: LIST_STATEMENTS){
 
                 System.out.println("stmtNum : {{"+ statment_Number + "}} ");
@@ -62,7 +63,7 @@ import java.util.List;
      
                 statment_Number++;
             }
-            System.out.println("---------Method [" + n.getName() + "] Ends------------------------------------------------------------------------------------");
+            System.out.println("---------Method [" + n.getName() + "] Ends------------------------");
    
         }
           
