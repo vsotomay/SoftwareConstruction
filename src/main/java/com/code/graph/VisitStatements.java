@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.code.graph;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -16,36 +11,23 @@ import java.util.List;
 
 /**
  *
- * @author juliuz
+ * @author Julio M. Corral
  */
 /**
      * Visit every method to parse statements from each
      */
     public class VisitStatements extends VoidVisitorAdapter {
+        
         private List<Statement> LIST_STATEMENTS;
-        //count statments from the .java input code
         private int statment_Number =1;
-        
-        public List<StatementCustomComponents> DISPATCH_STATEMENTS;
 
-        
-    public VisitStatements(){
-        
-    }
     
         @Override
         public void visit(MethodDeclaration n, Object arg) {
-            
-
-//            System.out.println(n.getBody().getChildrenNodes());//Gets contents of method.
-
-
-//             BlockStmt block = new BlockStmt();
 
             //Get every method's name from the parsed .java file
             System.out.println("----------------Statements in [" + n.getName() + "] are: ------------------------------------------------------------------");
-          
-  
+
             //every method declaration contains finite number of statments (lines of code)
             LIST_STATEMENTS = n.getBody().getStmts();
           
@@ -77,9 +59,7 @@ import java.util.List;
                      System.out.println("Line "+statement.getBeginLine()+" : "+statement);
                     
                 }
-              
-               
-                
+     
                 statment_Number++;
             }
             System.out.println("---------Method [" + n.getName() + "] Ends------------------------------------------------------------------------------------");
