@@ -2,23 +2,7 @@ package com.code.graph;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
 import java.io.*;
-import java.util.*;
-
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.BreakStmt;
-import com.github.javaparser.ast.stmt.ForStmt;
-import com.github.javaparser.ast.stmt.IfStmt;
-import com.github.javaparser.ast.stmt.Statement;
-import com.github.javaparser.ast.stmt.WhileStmt;
-import com.github.javaparser.ast.visitor.GenericVisitor;
-import com.github.javaparser.ast.visitor.GenericVisitorAdapter;
-import com.github.javaparser.ast.visitor.VoidVisitor;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.sun.glass.ui.EventLoop;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * @author Julio M. Corral
@@ -26,18 +10,13 @@ import org.apache.commons.lang3.StringEscapeUtils;
  */
 public class CodeGraph
 {
-    
-   
-    
-    
-    
     public static void main( String[] args ) throws IOException, ParseException {
 
         System.out.println("Running--> Parse .java code to identify type of statments: sequencial, iterative, conditional");
 
        
         // .java input code
-         FileInputStream in = new FileInputStream("/Users/juliuz/Desktop/FractionalToBinary.java");
+         FileInputStream in = new FileInputStream("/Users/jmcorral2/Desktop/QuickSort.java");
         CompilationUnit cu;
         try {
             // parse .java input code
@@ -47,13 +26,20 @@ public class CodeGraph
             in.close();
         }
 
-   
         System.out.println("Visiting Statments");
         System.out.println();
-
+        
+        //Use grammar library and parse .java input code into a list of statements
         new VisitStatements().visit(cu, null);
-//       System.out.println("ey there "+LIST_STATEMENTS.toString());
- 
+        
+        
+        //use list of statements parsed from the grammar and build a CFG with its nodes and edges
+        //BuildCFG will output the nodes, directed edges and labels using the XML library
+        //BuildCFG graphToBuild = new BuildCFG().construct();
+        
+        //save the XML file that contains the nodes,directed edges, labels in the project's folder
+        //External library graphzip-repl will be used to generate the graph
+
     }
     
 }
