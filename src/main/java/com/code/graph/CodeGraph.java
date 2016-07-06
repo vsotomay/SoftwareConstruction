@@ -5,7 +5,7 @@ import com.github.javaparser.ast.CompilationUnit;
 import java.io.*;
 
 /**
- * @author Julio M. Corral
+ * @author T7
  *
  */
 public class CodeGraph
