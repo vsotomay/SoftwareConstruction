@@ -1,6 +1,7 @@
 package com.code.graph;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.BreakStmt;
 import com.github.javaparser.ast.stmt.ForStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
@@ -26,7 +27,7 @@ import java.util.List;
         public void visit(MethodDeclaration n, Object arg) {
 
             //Get every method's name from the parsed .java file
-            System.out.println("----------------Statements in [" + n.getName() + "] are: ----------------------");
+            System.out.println("---------Statements in [" + n.getName() + "] are: ----------------------");
 
             //every method declaration contains finite number of statments (lines of code)
             BlockStmt method_block=new BlockStmt();
@@ -35,7 +36,7 @@ import java.util.List;
     
             for(Statement statement: LIST_STATEMENTS){
 
-                System.out.println("stmtNum : {{"+ statment_Number + "}} ");
+                System.out.println("stmt : {{"+ statment_Number + "}} ");
                 
                 if(statement instanceof IfStmt){
                     
@@ -85,7 +86,7 @@ import java.util.List;
             }
             
              
-            //flag visited methods using voidvisitoradapter
+            //flag
             super.visit(n, arg); 
             
         }
