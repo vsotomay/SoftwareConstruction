@@ -12,7 +12,7 @@ public class CodeGraph
 {
     public static void main( String[] args ) throws IOException, ParseException {
 
-        System.out.println("Running--> Parse .java code to identify type of statments: sequencial, iterative, conditional");
+        System.out.println("Runn");
 
        
         
