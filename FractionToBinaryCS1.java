@@ -3,7 +3,7 @@
    import java.util.*;
    import java.util.Scanner;
 
-   public class FractionalToBinary
+   public class FractionToBinaryCS1
    {
    public static void main (String [] args) 
     
