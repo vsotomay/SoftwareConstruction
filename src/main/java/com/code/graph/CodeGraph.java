@@ -12,11 +12,11 @@ public class CodeGraph
 {
     public static void main( String[] args ) throws IOException, ParseException {
 
-        System.out.println("Runn");
+        System.out.println("Running--> Parse .java code to identify type of statments: sequencial, iterative, conditional");
 
        
-        
-         FileInputStream in = new FileInputStream("/Users/juliuz/Desktop/QuickSort.java");
+        // .java input code
+        FileInputStream in = new FileInputStream("/Users/Upama/Desktop/Game3.java");
         CompilationUnit cu;
         try {
             // parse .java input code
