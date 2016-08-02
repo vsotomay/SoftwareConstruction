@@ -18,15 +18,17 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- * @author Pluto
+ * @author T7
  */
 public class VisualizationGeneration {
 private File graphvizFile; 
 private File xmlFile; 
 DocumentBuilder documentBuilder;
-   public VisualizationGeneration() throws ParserConfigurationException, TransformerException {
+   String methodName;
+   public VisualizationGeneration(String methodName) throws ParserConfigurationException, TransformerException {
+    this.methodName = methodName;
         try {
-            File graphvizFile = new File("C:\\graphViz\\graph1.gv");
+            File graphvizFile = new File("C:\\graphViz\\"+methodName+".gv");
             if (!graphvizFile.exists()) {
                 graphvizFile.createNewFile();
 
@@ -39,40 +41,19 @@ DocumentBuilder documentBuilder;
 
    private void readXML() throws ParserConfigurationException, TransformerException, IOException {
 
-        xmlFile = new File("C:\\XML\\data.xml");
+        xmlFile = new File("C:\\XML\\"+methodName+".xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-        graphvizFile = new File("C:\\graphViz\\graph1.gv");
+        graphvizFile = new File("C:\\graphViz\\"+methodName+".gv");
         
         generateVizCode();
-        //    File graphvizFile = new File("C:\\graphViz\\graph1.gv");
-//        try {
-//            Document document = documentBuilder.parse(xmlFile);
-//            document.getDocumentElement().normalize();
-//            NodeList list = document.getElementsByTagName("node");
-//            FileWriter fw = new FileWriter(graphvizFile);
-//            fw.write("digraph{");
-//            for (int i = 0; i < list.getLength(); i++) {
-//                org.w3c.dom.Node node = list.item(i);
-//
-//                Element element = (Element) node;
-//
-//                fw.write("\"" + element.getTextContent() + "\"->\"" + list.item(i).getAttributes().getNamedItem("to").getNodeValue() + "\"; \n");
-//                System.out.println("First Name : " + element.getTextContent());
-//                System.out.println("******" + list.item(i).getAttributes().getNamedItem("to").getNodeValue());
-//
-//            }
-//            fw.write("}");
-//            fw.close();
-//        } catch (Exception e) {
-//
-//        }
+
     }
        
    public void  generateVizCode(){
         try {
-                    Document document = documentBuilder.parse(xmlFile);
+            Document document = documentBuilder.parse(xmlFile);
             document.getDocumentElement().normalize();
             NodeList list = document.getElementsByTagName("node");
             FileWriter fw = new FileWriter(graphvizFile);
