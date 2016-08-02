@@ -71,7 +71,7 @@ public class VisitStatements extends VoidVisitorAdapter {
         } catch (TransformerException transformerException) {
 
         }
-              testMethod();
+             
 
         System.out.println("---------Method [" + n.getName() + "] Ends------------------------");
     }
