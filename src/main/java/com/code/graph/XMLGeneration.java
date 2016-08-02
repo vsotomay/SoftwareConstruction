@@ -27,28 +27,23 @@ import org.w3c.dom.Text;
 
 /**
  *
- * @author Pluto
+ * @author T7
  */
 public class XMLGeneration {
 
     private ArrayList<ArrayList<Integer>> nodeList;
     private ArrayList<ArrayList<Integer>> edgeList;
+    String methodName;
 
-    public XMLGeneration(ArrayList<ArrayList<Integer>> nodeList, ArrayList<ArrayList<Integer>> edgeList) {
+    public XMLGeneration(ArrayList<ArrayList<Integer>> nodeList, ArrayList<ArrayList<Integer>> edgeList, String methodName) {
         this.nodeList = nodeList;
         this.edgeList = edgeList;
-
-        try {
-            this.writeXML();
-        } catch (ParserConfigurationException parse) {
-
-        } catch (TransformerException transformerException) {
-
-        }
-
+        this.methodName = methodName;
     }
 
-    private void writeXML() throws ParserConfigurationException, TransformerException {
+
+  
+    protected void writeXML() throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
@@ -62,35 +57,35 @@ public class XMLGeneration {
 
         String[][] node = new String[5][4];
         List<String> nodes = new ArrayList<String>();
-//        nodes.add("StmentID:1,2,3;To:4,5");
-//
-//        System.out.println("XML:::::");
-//        System.out.println(Arrays.deepToString(node));
+
 
         String nodeName = "node";
         for (int edgeI = 0; edgeI < edgeList.size(); edgeI++) {
 
-            int nodeIndexFrom = edgeList.get(edgeI).get(0);
-            int nodeIndexTo = edgeList.get(edgeI).get(1);
-
-            String nodeFrom = StringUtils.join(", ", nodeList.get(nodeIndexFrom));
-            String nodeTo = StringUtils.join(", ", nodeList.get(nodeIndexTo));
+        int nodeIndexFrom = edgeList.get(edgeI).get(0);
+        int nodeIndexTo = edgeList.get(edgeI).get(1);
+System.out.println("nodeIndexFrom:: "+nodeIndexFrom);
+System.out.println("nodeIndexTo:: "+nodeIndexTo);
+        String nodeFrom = StringUtils.join(", ", nodeList.get(nodeIndexFrom));
+        nodeFrom = removeUnwantedCharacter(nodeFrom);
+        String nodeTo = StringUtils.join(", ", nodeList.get(nodeIndexTo));
+        nodeTo = removeUnwantedCharacter(nodeTo);
 //System.out.println("\n \n \n \n \n  joined ---------------------------"+joined+"\n \n \n \n \n");
      
-            element.appendChild(this.addXMLNodes(nodeName, nodeFrom, nodeTo, document));       
-            System.out.println(nodeList.get(nodeIndexFrom));
-        }
+        element.appendChild(this.addXMLNodes(nodeName, nodeFrom, nodeTo, document));       
+       //     System.out.println(nodeList.get(nodeIndexFrom));
+    }
 
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(document);
 
-        StreamResult streamresult = new StreamResult(new File("C:\\XML\\data.xml"));
+        StreamResult streamresult = new StreamResult(new File("C:\\XML\\"+methodName+".xml"));
         transformer.transform(source, streamresult);
 
         
-        VisualizationGeneration visualizationGeneration = new VisualizationGeneration();
+        VisualizationGeneration visualizationGeneration = new VisualizationGeneration(methodName);
     }
 
     private Element addXMLNodes(String name, String value, String to, Document document) {
@@ -103,6 +98,11 @@ public class XMLGeneration {
         attributeName.setAttributeNode(attrTo);
         attributeName.appendChild(attributetext);
         return attributeName;
+    }
+    
+    private String removeUnwantedCharacter(String nodeFrom){
+        String nodeFrom1 = nodeFrom.substring(3);
+        return nodeFrom1.substring(0, nodeFrom1.length()-1);
     }
 
 }
